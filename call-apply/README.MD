@@ -17,7 +17,7 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
 ## 2、call、apply会改变this指向
     
     我在实际应用中，最常用的就是用call、apply去“借”另一个对象的方法来用，其实是call、apply改变了this指向。
-##### 上最简单的栗子
+#### 上最简单的栗子
 
     我写了个对象obj1，内部三个属性，两个数字numA、numB、还有个方法add，可以打印numA和numB之和：
     
