@@ -22,7 +22,7 @@
 
 [1、理解this的小技巧](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/this)<br/>
 [2、巧妙理解call、apply，以及替代写法(未写，占位)](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)<br/>
-[2、不得不提的原型链(未写，占位)](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)<br/>
+[3、不得不提的原型链(未写，占位)](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)<br/>
 4、占位，视情况填坑<br/>
 +、...<br/>
 
