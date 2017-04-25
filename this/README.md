@@ -11,42 +11,52 @@ function foo(){
   console.log(this)
 }
 ```
-调用
+###### 调用
 ```javascript
 foo();    //自己去运行代码看this指向谁
 //脑补：
 window.foo();   //自己去运行代码看this指向谁
 ```
-不用怀疑，也不用犹豫，找不到任何“.”，this基本就指向window了。
+不用怀疑，也不用犹豫，找不到任何“.”，this指向window。
 以后见到直接调用的foo，自动脑补成window.foo()，因为在这种情况下，这两种写法是一样的。
 
-#### 2、找“点”大法：找得到“.”的函数调用，this指向一般是最后一个“.”左侧的那个对象：
-##### 只能找到一个一个“.”：<br/>
-一个对象bar，bar里有个属性是方法foo，foo内部打印this
+##### 当函数/匿名函数作为参数时，你是找不到“.”的，这种情况下，函数内部的this指向window。
 ```javascript
-function foo(){
-  console.log(this)
+function foo(callback){
+    callback();
 }
-var bar = {name:'我是bar'};
-bar.foo = foo;
+foo(function(){
+    console.log(this);  //自己去运行代码看this指向谁
+})
 ```
-调用
+这个例子就是，匿名函数内部打印了this，它作为参数，内部的this指向window。
+
+#### 2、找“点”大法：找得到“.”的函数调用，this指向一般是最后一个“.”左侧的那个对象：
+##### ·调用语句里只能找到一个“.”：<br/>
+
+```javascript
+var bar = {name:'我是bar'};
+bar.foo = function(){
+  console.log(this)
+};
+```
+###### 调用
 ```javascript
 bar.foo();  //自己去运行代码看this指向谁
 ```
 这个例子，我们找到了“.”的存在，“.”左侧是bar，指向是bar。
 
-##### 能找到多个“.”：<br/>
-一个对象obj，obj有个属性是对象bar，bar里面属性是方法foo，foo内部打印this
+##### ·调用语句里能找到多个“.”：<br/>
+
 ```javascript
-function foo(){
-  console.log(this)
-}
 var obj = {name:'我是obj'};
 obj.bar = {name:'我是bar'};
-obj.bar.foo = foo;
+obj.bar.foo = function(){
+  console.log(this)
+};
+
 ```
-调用
+###### 调用
 ```javascript
 obj.bar.foo();  //自己去运行代码看this指向谁
 ```
