@@ -26,7 +26,8 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
 
     现在侯亮平接手的反贪局接管了代码，
     需求是，不改变陈海写的代码的情况下，在每次调用陈海写的代码时先打印一些话。
-    林华华自告奋勇，用一段代码帮侯局长完成了需求：
+    
+###### 林华华自告奋勇，用一段代码帮侯局长完成了需求：
     
 ```javascript
     function beforeFoo(num){
@@ -40,16 +41,16 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
     foo(30); //运行一下看看效果
 ```
 
-    陆亦可觉得这个代码复用性太低，每次改变beforeFoo的参数，还要一同修改下面的代码，于是改进了一下：
+###### 陆亦可觉得这个代码复用性太低，每次改变beforeFoo的参数，还要一同修改下面的代码，于是改进了一下：
 
 ```javascript
-    function beforeFoo(num){
-        console.log('侯亮平知道陈海有床戏,一共'+num+'场');
+    function beforeFoo(num,text){
+        console.log('侯亮平知道陈海有床戏,一共'+num+'场,',text);
     }
     var fooOld = foo;
     foo = function(){
         beforeFoo.apply(this,arguments);
         fooOld();
     }
-    foo(30); //运行一下看看效果
+    foo(30,'醒不过来'); //运行一下看看效果
 ```
