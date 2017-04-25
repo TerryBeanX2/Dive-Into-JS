@@ -167,7 +167,7 @@ Obj1.prototype.add.apply(obj2, [3, 4]); //打印出obj2.numA和obj2.numB的和�
 看到call、apply出现，遵循着“借”的思想，再配合“改变this指向”，<br/>
 XX.call(YY)，那么这个“XX”就是被借的方法；<br/>
 YY就是借方法的那个对象，this指向它；<br/>
-XX是谁的？谁调用就是谁的，XX左边没有“.”，说明是全局调用，那就是windows的。<br/>
+XX是谁的？谁调用就是谁的，XX左边没有“.”，说明是全局调用，那就是window的。<br/>
 一定要做到“不找出到底是向谁借的就不罢休”。<br/>
 
 #### 当你终于找到物主(到底是“借”的谁的方法)，接着理清this指向，你也就透彻的明白call和apply了。
