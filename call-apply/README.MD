@@ -17,7 +17,7 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
 ## 2、call、apply会改变this指向
     
     我在实际应用中，最常用的就是用call、apply去“借”另一个对象的方法来用，其实是call、apply改变了this指向。
-##### 上栗子
+##### 上最简单的栗子
 
     我写了个对象obj1，内部三个属性，两个数字numA、numB、还有个方法add，可以打印numA和numB之和：
     
@@ -47,12 +47,11 @@ obj1.add.call(obj2); //打印出obj2.numA和obj2.numB的和，即7;
 obj1.add.apply(obj2); //打印出obj2.numA和obj2.numB的和，即7;
 ```
 
-    有意思吧？明明是obj1的add方法里出现了this，按照《理解JS中this指向的小技巧》中的思路，
+    有意思吧？明明是obj1的add方法里出现了this，按照《理解JS中this指向的小技巧》中的思路，
     找到的“.”左边是obj1，说明是obj1调用了add，this应该指向obj1啊！为啥算出来的结果都是obj2里的numA与numB之和呢？
     因为用了call和apply啊！不是刚说完嘛，它们改变了this的指向啊，指向谁啊？第一个参数啊！第一个参数是谁啊？obj2啊！
-    所以你写obj1.add.call(obj2)，add方法中this就变成了obj2，就打印出了obj2.numA和obj2.numB的和。
-    就起到了“借”的效果。
-    
+    所以你写obj1.add.call(obj2)，add方法中this就变成了obj2，就打印出了obj2.numA和obj2.numB的和。
+    就起到了“借”的效果。
 #### 带参数的栗子
 
     我写了个构造函数Obj1，内部三个属性，两个数字numA、numB、还有个方法add，可以打印numA和numB之和：
@@ -89,10 +88,10 @@ Obj1.prototype.add.call(obj2, 3, 4); //打印出obj2.numA和obj2.numB的和，�
 Obj1.prototype.add.apply(obj2, [3, 4]); //打印出obj2.numA和obj2.numB的和，即7;
 ```
 
-
-    
-
-## 3、再说个特殊的apply的栗子
+    这个栗子恰好说明了带参数的情况怎么“借”另一个对象的方法，也把apply和call的不同解释明白了，就是个传参不同。
+    看这个 Obj1.prototype.add.call(obj2, 3, 4) ，眼熟吗？
+    像不像 Array.prototype.forEach.call(xxx)见过没？就是这么来的，xxx想借用Array.prototype的forEach方法完成遍历。
+## 3、再说个特殊栗子，在this指向window的情况下，apply的应用
 比如有个需求，需要做到每次调用先前别人写好的方法时，先在前面运行我们添加的代码：<br/>
 下面的代码不一定是最好的实现本需求的代码，但可以演示apply的应用。<br/>
 生动的具体化一下：
@@ -148,22 +147,28 @@ Obj1.prototype.add.apply(obj2, [3, 4]); //打印出obj2.numA和obj2.numB的和�
     1、this出现在新foo的内部；
     2、foo的调用语句是foo(30，'醒不过来')，是全局直接调用，找不到“.”；
     根据我上一篇this教程，通过这两点，不难发现this指向window；
-##### 教你个apply转换大法： 
 
-    a.apply(b,arguments) ES6的新写法就是 b.a(...arguments)
-    ...arguments是ES6语法，解构参数数组，用白话来说就是JS帮你在调用方法时把参数按逗号分开传进去。
-    你可以在谷歌控制台里验证一下，ES6写法搞出来的代码，和原本的代码，效果是一样的。
-##### 接着分析陆亦可的代码：
+    那么，根据本片文章前面提到过的，apply即“借”，beforeFoo.apply(this,arguments)，
+    也就是this借用了beforeFoo方法，向谁借的？beforeFoo左边没有“.”，是全局调用，原来是向window借的！
+    而刚刚说过，此this指向window，这就好玩了：window向window借用了beforeFoo方法！
 
-    那么 beforeFoo.apply(this,arguments) 就可以转换成 this.beforeFoo(...arguments)；
-    而this上文说过指向window，即window.beforeFoo(...arguments) ；
-    window是全局环境，不写window也没问题，所以就变成了beforeFoo(...arguments);
-    于是不管你修改beforeFoo为带多少个参数，运行的时候JS会通过arguments对象在调用方法时帮你传参，无论参数多少个。
-    所以陆亦可的代码就这样借助apply完成了代码可用性的提高。
-    最后，侯亮平把这些代码封装起来...搞好了事情。
-    所以说，ES6还是很不错的，可以在这个功能点上替代apply写法；
-    但是你在实际情况下依然会见到许多apply的代码，所以你还是得懂他为何这么写。
+    你说，那不就是beforeFoo直接调用吗，绕一圈干嘛？别忘了还有arguments参数呢！
+    这么绕了一圈，在绕圈调用的过程中，JS会解析arguments参数，自动用“，”帮你把参数分开传入beforeFoo方法，
+    以后无论你如何修改beforeFoo方法的参数个数，都不用再改剩余的代码了。
+    陆亦可利用这一点，巧妙的借助apply完成了代码的可用性提高。
 
+    PS：ES6新出的拓展符可以完成一样的效果：before.apply(this,arguments)可以写成before(...arguments);
+    请细细品味，发现道理都是想通的，有趣吧。
+
+    最后，侯亮平风骚的封装了代码，以后陈海再也不怕不知道自己会演多少场床戏了。
+    
+## 小结
+看到call、apply出现，遵循着“借”的思想，再配合“改变this指向”，<br/>
+一定要做到“不找出到底是向谁借的就不罢休”。<br/>
+
+#### 一句话来说，当你终于找到物主(到底是“借”的谁的方法)，理清this指向，你也就透彻的明白call和apply了。
+
+欢迎转载，需要注明原址。如果帮到你，希望得到你的Star~
 
 
 
