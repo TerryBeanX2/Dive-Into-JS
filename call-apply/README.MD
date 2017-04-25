@@ -12,7 +12,41 @@ call和apply的功能是完全一样的，只是第二个参数不一样；<br/>
 call可以接收无限多个参数，apply只接收俩参数，并且第二个参数只能是argument。<br/>
 好了，现在，你只需要记住这么多，不要多想，看下面的例子。<br/>
 
-## 2、举个基本不相关apply实际应用的栗子
+
+## 2、call、apply会改变this指向
+    
+    我在实际应用中，最常用的就是用call、apply去“借”另一个对象的方法来用，其实是call、apply改变了this指向。
+##### 上栗子
+
+    我写了个对象obj1，内部三个属性，两个数字numA、numB、还有个方法add，可以打印numA和numB之和：
+    
+```javascript
+var obj1 ={
+    numA:1,
+    numB:2,
+    add:function(){
+         console.log(this.numA + this.numB)
+    }
+}
+obj1.add(); //打印出obj1.numA和obj1.numB的和，即3
+```
+
+    现在我写了个对象obj2，内部有只两个属性数字numA和数字numB，没有计算器，但也想求和，怎么办？
+    管obj1借啊！怎么借？call、apply啊！
+    上代码
+
+```javascript
+var obj2 = {
+    numA:3,
+    numB:4
+}
+//用call借：
+obj1.add.call(obj2); //打印出obj2.numA和obj2.numB的和，即7;
+//用apply借：
+obj1.add.apply(obj2); //打印出obj2.numA和obj2.numB的和，即7;
+```
+
+## 3、再说个apply的栗子
 比如有个需求，需要做到每次调用先前别人写好的方法时，先在前面运行我们添加的代码：<br/>
 下面的代码不一定是最好的实现代码，但可以演示apply的应用。<br/>
 生动的具体化一下：
@@ -68,13 +102,11 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
     1、this出现在新foo的内部；
     2、foo的调用语句是foo(30，'醒不过来')，是全局直接调用，找不到“.”；
     根据我上一篇this教程，通过这两点，不难发现this指向window；
-
 ##### 教你个apply转换大法： 
 
     a.apply(b,arguments) ES6的新写法就是 b.a(...arguments)
     ...arguments是ES6语法，解构参数数组，用白话来说就是JS帮你在调用方法时把参数按逗号分开传进去。
     你可以在谷歌控制台里验证一下，ES6写法搞出来的代码，和原本的代码，效果是一样的。
-    
 ##### 接着分析陆亦可的代码：
 
     那么 beforeFoo.apply(this,arguments) 就可以转换成 this.beforeFoo(...arguments)；
@@ -86,42 +118,6 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
     所以说，ES6还是很不错的，可以在这个功能点上替代apply写法；
     但是你在实际情况下依然会见到许多apply的代码，所以你还是得懂他为何这么写。
     不相关的例子到此结束，下面说正题。
-
-## 3、call、apply会改变this指向
-    
-    我在实际应用中，最常用的就是用call、apply去“借”另一个对象的方法来用，其实是call、apply改变了this指向。
-    
-##### 上栗子
-    
-    我写了个对象obj1，内部三个属性，两个数字numA、numB、还有个方法add，可以算numA和numB之和：
-    
-```javascript
-var obj1 ={
-    numA:1,
-    numB:2,
-    add:function(){
-        var sum = this.numA + thi.numB
-        return sum;
-    }
-}
-obj1.add(); //打印出obj1.numA和obj1.numB的和，即3
-```
-
-    现在我写了个对象obj2，内部有只两个属性数字numA和数字numB，没有计算器，但也想求和，怎么办？
-    管obj1借啊！怎么借？call、apply啊！
-    上代码
-
-```javascript
-var obj2 = {
-    numA:3,
-    numB:4
-}
-//用call借：
-obj1.add.call(obj2); //打印出obj2.numA和obj2.numB的和，即7;
-//用apply借：
-obj1.add.apply(obj2); //打印出obj2.numA和obj2.numB的和，即7;
-```
-
 
 
 
