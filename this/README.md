@@ -74,7 +74,7 @@ obj.bar.foo();  //自己去运行代码看this指向谁
 
     这个例子，我们找到了俩“.”，最后一个“.”左侧的对象是bar，那么this指向就是bar。
 
-##### ㈡如果发现你找到的“.”左侧是prototype，那么再往左找一个“.”，这个“.”左侧的对象是this指向。原理在[不得不提的原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)中给出。
+##### ㈡如果发现你找到的“.”左侧是prototype，那么再往左找一个“.”，这个“.”左侧的对象是this指向。原理在[不得不提的原型/原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)中给出。
 
 
 ## 3、面向对象中的this：
