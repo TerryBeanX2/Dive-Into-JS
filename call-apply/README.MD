@@ -70,13 +70,13 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
 
 ##### 教你个apply转换大法： 
 
-    a.apply(b,arguments) ES6的新写法就是 b.a(...arguments)
-    ...arguments是ES6语法，解构参数数组，用白话来说就是JS帮你在调用方法把参数按逗号分开传进去。
+    a.apply(b,arguments) ES6的新写法就是 b.a(...arguments)
+    ...arguments是ES6语法，解构参数数组，用白话来说就是JS帮你在调用方法把参数按逗号分开传进去。
     你可以在谷歌控制台里验证一下，脑补出来的代码，和原本的代码，效果是一样的。
     
 ##### 接着分析陆亦可的代码：
 
-    那么 beforeFoo.apply(this,arguments) 就可以脑补成 this.beforeFoo(...arguments)；
-    而this上文说过就是window，即window.beforeFoo(...arguments) ；
-    不写window也没问题，所以就变成了beforeFoo(...arguments);
-    于是不管你修改beforeFoo为带多少个参数，运行的时候JS会通过arguments对象在。
+    那么 beforeFoo.apply(this,arguments) 就可以脑补成 this.beforeFoo(...arguments)；
+    而this上文说过就是window，即window.beforeFoo(...arguments) ；
+    不写window也没问题，所以就变成了beforeFoo(...arguments);
+    于是不管你修改beforeFoo为带多少个参数，运行的时候JS会通过arguments对象在。
