@@ -1,10 +1,10 @@
-## 理解JS中this指向的小技巧
+# 理解JS中this指向的小技巧
 
 在看他人写的js文件时，会看到许多this，对this不熟悉的人很容易蒙圈，这里就说明如何用最简单的方法去找this指向谁。
 
 #### 切记！这里说的找“点”大法中的“.”，都是在调用的语句里找，本教程的全局对象为window！
 
-#### 1、找“点”大法：你找不到“.”的函数调用，this指向一般是window：
+## 1、找“点”大法：你找不到“.”的函数调用，this指向一般是window：
 
 ```javascript
 function foo(){
@@ -32,7 +32,7 @@ foo(function(){
 ```
     这个例子就是，匿名函数内部打印了this，它作为参数，内部的this指向window。
     
-#### 2、找“点”大法：找得到“.”的函数调用，this指向一般是最后一个“.”左侧的那个对象：
+## 2、找“点”大法：有“.”的函数调用，this指向一般是最后一个“.”左侧的那个对象：
 ##### 2-1、调用语句里只能找到一个“.”：<br/>
 
 ```javascript
@@ -68,7 +68,7 @@ obj.bar.foo();  //自己去运行代码看this指向谁
 ##### ㈡如果发现你找到的“.”左侧是prototype，那么再往左找一个“.”，这个“.”左侧的对象是this指向。原理在[不得不提的原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)中给出。
 
 
-#### 3、面向对象中的this：
+## 3、面向对象中的this：
 
 ```javascript
 function Foo(){
@@ -113,7 +113,7 @@ foo.funcWithParam(function(){
 
 
 
-### 小结：
+## 小结：
 
 * 找不到“.”的函数调用，其内部的this一般指向window象；
 * 找得到“.”的函数调用，其内部的this一般指向最后一个“.”左侧的那个对象，如果左侧是prototype，再向左找一个；
