@@ -21,6 +21,6 @@
 
 [1、理解this的小技巧](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/this)<br/>
 2、巧妙理解call、apply，以及替代写法<br/>
-3、...<br/>
+3、不得不提的prototype、__proto__<br/>
 4、...<br/>
 +、...<br/>
