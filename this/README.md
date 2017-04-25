@@ -2,7 +2,7 @@
 
 在看他人写的js文件时，会看到许多this，对this不熟悉的人很容易蒙圈，这里就说明如何用最简单的方法去找this指向谁。
 
-### 切记！这里说的找“点”，都是在调用的语句里找，本教程的全局对象为window！
+#### 切记！这里说的找“点”大法中的“.”，都是在调用的语句里找，本教程的全局对象为window！
 
 #### 1、找“点”大法：你找不到“.”的函数调用，this指向一般是window：
 
@@ -99,7 +99,7 @@ foo.funcWithParam(function(){
 
     当Foo()时，Foo被当做[普通函数]，那么遵循找“点”大法，Foo内部的this是指向window的;
     
-    当Foo.prototype.bar()时，Foo还是被当做[普通函数]，遵循找“点”大法，发现prototype，转而遵循②，再向左找，发现this指向Foo；
+    当Foo.prototype.bar()时，Foo还是被当做[普通函数]，遵循找“点”大法，按照2-2，发现找到了prototype，转而遵循②，再向左找，发现this指向Foo；
     
     当new Foo()时，Foo作为[构造函数]被实例化，Foo内部的this指向实例化后的Foo，也就是我声明的foo；
     
@@ -120,10 +120,12 @@ foo.funcWithParam(function(){
 * 明确区分函数是[构造函数]还是[普通函数]，[构造函数]内的this指向实例化后的对象；
 * 函数作为参数传递，被调用时其内部的this一般指向window。
 * call和apply会改变this指向，参阅[巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)。
+* ES6/7的箭头函数也会改变this指向，这个很简单，我就不多讲啦~
+
+#### 一句话来说，就是“谁调的我(普通函数)，我内部的this就指向谁；new我一下(构造函数)，我内部的this就指向我的实例化”
 
 
-
-##### 欢迎转载，需要注明原址。如果帮到你，给我一个Star吧，我会继续努力写下去~
+###### 欢迎转载，需要注明原址。如果帮到你，给我一个Star吧，我会继续努力写下去~
 
 
 
