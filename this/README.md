@@ -78,7 +78,7 @@ obj.bar.foo();  //自己去运行代码看this指向谁
 
 
 ## 3、面向对象中的this：
-对面向对象不够了解的同学，我会在[不得不提的原型/原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)中对下面的例子进行剖析。<br/>
+对面向对象不够了解的同学，请尽量读懂[不得不提的原型/原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)<br/>
 阅读本文，就先专注于找this指向吧！
 
 ###### 声明
