@@ -21,7 +21,7 @@ window.foo();   //自己去运行代码看this指向谁
     不用怀疑，也不用犹豫，找不到任何“.”，this指向window。
     以后见到直接调用的foo，自动脑补成window.foo()，因为在这种情况下，这两种写法是一样的。
 
-##### ①当函数/匿名函数作为参数时，你是找不到“.”的，这种情况下，函数内部的this指向window。
+##### ㈠当函数/匿名函数作为参数时，你是找不到“.”的，这种情况下，函数内部的this指向window。
 ```javascript
 function foo(callback){
     callback(); //调用其实在这里，你是找不到“.”的
@@ -65,7 +65,7 @@ obj.bar.foo();  //自己去运行代码看this指向谁
 
     这个例子，我们找到了俩“.”，最后一个“.”左侧的对象是bar，那么this指向就是bar。
     
-##### ②如果发现你找到的“.”左侧是prototype，那么再往左找一个“.”，这个“.”左侧的对象是this指向。原理在[不得不提的原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)中给出。
+##### ㈡如果发现你找到的“.”左侧是prototype，那么再往左找一个“.”，这个“.”左侧的对象是this指向。原理在[不得不提的原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)中给出。
 
 
 #### 3、面向对象中的this：
@@ -99,13 +99,13 @@ foo.funcWithParam(function(){
 
     当Foo()时，Foo被当做[普通函数]，那么遵循找“点”大法，Foo内部的this是指向window的;
     
-    当Foo.prototype.bar()时，Foo还是被当做[普通函数]，遵循找“点”大法，按照2-2，发现找到了prototype，转而遵循②，再向左找，发现this指向Foo；
+    当Foo.prototype.bar()时，Foo还是被当做[普通函数]，遵循找“点”大法，按照2-2，发现找到了prototype，转而遵循㈡，再向左找，发现this指向Foo；
     
     当new Foo()时，Foo作为[构造函数]被实例化，Foo内部的this指向实例化后的Foo，也就是我声明的foo；
     
     当foo.bar时，遵循找“点”大法，按照2-1，发现this指向foo；
     
-    当foo.funcWithParam(匿名函数)时，因为匿名函数作为参数，所以遵循①，发现其内部this指向window；
+    当foo.funcWithParam(匿名函数)时，匿名函数前没有“.”，匿名函数作为参数，所以遵循㈠，发现其内部this指向window；
     
 
 
