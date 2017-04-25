@@ -53,6 +53,7 @@ obj1.add.apply(obj2); //打印出obj2.numA和obj2.numB的和，即7;
     所以你写obj1.add.call(obj2)，add方法内部的this就变成了obj2，就打印出了obj2.numA和obj2.numB的和。
     就起到了obj2向Obj1“借”了方法add的效果。
 #### 带参数的栗子
+这个栗子是面向对象的栗子，对面向对象不够了解的同学，请尽量读懂[不得不提的原型/原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)<br/>
 
     我写了个构造函数Obj1，内部三个属性，两个数字numA、numB、还有个方法add，可以打印numA和numB之和：
     
@@ -164,9 +165,12 @@ Obj1.prototype.add.apply(obj2, [3, 4]); //打印出obj2.numA和obj2.numB的和�
     
 ## 小结
 看到call、apply出现，遵循着“借”的思想，再配合“改变this指向”，<br/>
+XX.call(YY)，那么这个“XX”就是被借的方法；<br/>
+YY就是借方法的那个对象，this指向它；<br/>
+XX是谁的？谁调用就是谁的，XX左边没有“.”，说明是全局调用，那就是windows的。<br/>
 一定要做到“不找出到底是向谁借的就不罢休”。<br/>
 
-#### 一句话来说，当你终于找到物主(到底是“借”的谁的方法)，理清this指向，你也就透彻的明白call和apply了。
+#### 当你终于找到物主(到底是“借”的谁的方法)，接着理清this指向，你也就透彻的明白call和apply了。
 
 欢迎转载，需要注明原址。如果帮到你，希望得到你的Star~
 
