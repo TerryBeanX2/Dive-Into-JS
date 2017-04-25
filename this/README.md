@@ -21,28 +21,29 @@ window.foo();   //自己去运行代码看this指向谁
 以后见到直接调用的foo，自动脑补成window.foo()，因为在这种情况下，这两种写法是一样的。
 
 #### 2、找“点”大法：找得到“.”的函数调用，this指向一般是最后一个“.”左侧的那个对象：
+##### 只能找到一个一个“.”：<br/>
 一个对象bar，bar里有个属性是方法foo，foo内部打印this
 ```javascript
 function foo(){
   console.log(this)
 }
-var bar = {}；
+var bar = {name:'我是bar'};
 bar.foo = foo;
 ```
 调用
 ```javascript
 bar.foo();  //自己去运行代码看this指向谁
 ```
-这个例子，我们找到了“.”的存在，“.”左侧最近的是bar，那么bar是个啥？bar肯定是个对象啦！指向就是bar了。
+这个例子，我们找到了“.”的存在，“.”左侧是bar，指向是bar。
 
-那你再看看这个呢？
+##### 能找到多个“.”：<br/>
 一个对象obj，obj有个属性是对象bar，bar里面属性是方法foo，foo内部打印this
 ```javascript
 function foo(){
   console.log(this)
 }
-var obj = {};
-obj.bar = {};
+var obj = {name:'我是obj'};
+obj.bar = {name:'我是bar'};
 obj.bar.foo = foo;
 ```
 调用
