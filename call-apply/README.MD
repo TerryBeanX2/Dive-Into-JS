@@ -90,8 +90,8 @@ Obj1.prototype.add.apply(obj2, [3, 4]); //打印出obj2.numA和obj2.numB的和�
 
     这个栗子恰好说明了带参数的情况怎么“借”另一个对象的方法，也把apply和call的不同解释明白了，就是个传参不同。
     看这个 Obj1.prototype.add.call(obj2, 3, 4) ，眼熟吗？
-    像不像 Array.prototype.forEach.call(xxx)见过没？就是这么来的，xxx想借用Array.prototype的forEach方法完成遍历。
-## 3、再说个特殊栗子，在this指向window的情况下，apply的应用
+    像不像 Array.prototype.forEach.call(xxx) ？就是这么来的，xxx想借用Array.prototype的forEach方法完成遍历。
+## 3、特殊栗：在第一个参数为this并且this指向window的情况下，apply的应用
 比如有个需求，需要做到每次调用先前别人写好的方法时，先在前面运行我们添加的代码：<br/>
 下面的代码不一定是最好的实现本需求的代码，但可以演示apply的应用。<br/>
 生动的具体化一下：
