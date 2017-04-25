@@ -17,3 +17,10 @@
 帮助那些“马上要懂而又没懂就差那么一丢丢”的开发者们，在某些个具体化的知识点上(仅仅是某个)，<br/>
 用最简单的白话解读出来，包括我自己的理解小技巧。<br/>
 
+#### 本着对技术负责的态度，任何纠正/疑问，请在[issues](https://github.com/TerryBeanX2/Dive-Into-JS/issues)里提出，我会及时修正/回答。
+
+[1、理解this的小技巧](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/this)<br/>
+2、理解call、apply的用途，以及替代写法<br/>
+3、...<br/>
+4、...<br/>
++、...<br/>
