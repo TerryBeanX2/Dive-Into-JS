@@ -1,4 +1,4 @@
-# prototype/constructor与__proto__
+# 不得不说的原型与原型链：prototype与__proto__
 
 ## 1、纸面意思
 啥是原型，啥是原型链？<br/>
