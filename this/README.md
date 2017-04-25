@@ -2,9 +2,9 @@
 
 在看他人写的js文件时，会看到许多this，对this不熟悉的人很容易蒙圈，这里就说明如何用最简单的方法去找this指向谁。
 
-### 切记！这里说的找“点”，都是在调用的语句里找，本教程的全局对象为Window！
+### 切记！这里说的找“点”，都是在调用的语句里找，本教程的全局对象为window！
 
-#### 1、找“点”大法：你找不到“.”的函数调用，this指向一般是Window：
+#### 1、找“点”大法：你找不到“.”的函数调用，this指向一般是window：
 
 ```javascript
 function foo(){
@@ -18,10 +18,10 @@ foo();    //自己去运行代码看this指向谁
 window.foo();   //自己去运行代码看this指向谁
 ```
 
-    不用怀疑，也不用犹豫，找不到任何“.”，this指向Window。
+    不用怀疑，也不用犹豫，找不到任何“.”，this指向window。
     以后见到直接调用的foo，自动脑补成window.foo()，因为在这种情况下，这两种写法是一样的。
 
-##### ①当函数/匿名函数作为参数时，你是找不到“.”的，这种情况下，函数内部的this指向Window。
+##### ①当函数/匿名函数作为参数时，你是找不到“.”的，这种情况下，函数内部的this指向window。
 ```javascript
 function foo(callback){
     callback(); //调用其实在这里，你是找不到“.”的
@@ -31,7 +31,7 @@ foo(function(){
 })
 ```
 
-    这个例子就是，匿名函数内部打印了this，它作为参数，内部的this指向Window。
+    这个例子就是，匿名函数内部打印了this，它作为参数，内部的this指向window。
     
 
 #### 2、找“点”大法：找得到“.”的函数调用，this指向一般是最后一个“.”左侧的那个对象：
@@ -99,7 +99,7 @@ foo.funcWithParam(function(){
 
 ```
 
-    当Foo()时，Foo被当做[普通函数]，那么遵循找“点”大法，Foo内部的this是指向Window的;
+    当Foo()时，Foo被当做[普通函数]，那么遵循找“点”大法，Foo内部的this是指向window的;
     
     当Foo.prototype.bar()时，Foo还是被当做[普通函数]，遵循找“点”大法，发现prototype，转而遵循②，再向左找，发现this指向Foo；
     
@@ -107,15 +107,15 @@ foo.funcWithParam(function(){
     
     当foo.bar时，遵循找“点”大法，按照2-1，发现this指向foo；
     
-    当foo.funcWithParam(匿名函数)时，因为匿名函数作为参数，所以遵循①，发现其内部this指向Window；
+    当foo.funcWithParam(匿名函数)时，因为匿名函数作为参数，所以遵循①，发现其内部this指向window；
 
 #### 4、call和apply会改变this指向，在[巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)单独详解。
 
 ### 小结：
-* 找不到“.”的函数调用，其内部的this一般指向全局对象；
+* 找不到“.”的函数调用，其内部的this一般指向window象；
 * 找得到“.”的函数调用，其内部的this一般指向最后一个“.”左侧的那个对象，如果左侧是prototype，再向左找一个；
 * 明确区分函数是[构造函数]还是[普通函数]，[构造函数]内的this指向实例化后的对象；
-* 函数作为参数传递，被调用时其内部的this一般指向Window。
+* 函数作为参数传递，被调用时其内部的this一般指向window。
 * call和apply会改变this指向，参阅[巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)。
 
 #### 欢迎转载，需要注明原址。如果帮到你，给我一个Star吧，我会继续努力写下去~
