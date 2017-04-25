@@ -48,10 +48,10 @@ obj1.add.apply(obj2); //打印出obj2.numA和obj2.numB的和，即7;
 ```
 
     有意思吧？明明是obj1的add方法里出现了this，按照《理解JS中this指向的小技巧》中的思路，
-    找到的“.”左边是obj1，说明是obj1调用了add，this应该指向obj1啊！为啥算出来的结果都是obj2里的numA与numB之和呢？
+    找到的“.”左边是obj1，说明是obj1调用了add，add方法内部的this应该指向obj1啊！为啥算出来的结果都是obj2里的numA与numB之和呢？
     因为用了call和apply啊！不是刚说完嘛，它们改变了this的指向啊，指向谁啊？第一个参数啊！第一个参数是谁啊？obj2啊！
     所以你写obj1.add.call(obj2)，add方法中this就变成了obj2，就打印出了obj2.numA和obj2.numB的和。
-    就起到了“借”的效果。
+    就起到了obj2向Obj1“借”了方法add的效果。
 #### 带参数的栗子
 
     我写了个构造函数Obj1，内部三个属性，两个数字numA、numB、还有个方法add，可以打印numA和numB之和：
