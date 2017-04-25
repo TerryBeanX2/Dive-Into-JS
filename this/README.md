@@ -133,7 +133,7 @@ foo.funcWithParam(function(){
 * 明确区分函数是[构造函数]还是[普通函数]，[构造函数]内的this指向实例化后的对象；
 * 函数作为参数传递，被调用时其内部的this一般指向window。
 * call和apply会改变this指向，参阅[巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)。
-* ES6/7的箭头函数也会改变this指向，这个很简单，我就不多讲啦~
+* ES6/7的箭头函数也会影响this指向，这个很简单，我就不多讲啦~
 
 #### 一句话来说，就是“谁调的我(普通函数)，我内部的this就指向谁；new我一下(构造函数)，我内部的this就指向我的实例化”
 
