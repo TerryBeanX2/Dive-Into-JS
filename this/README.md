@@ -122,7 +122,7 @@ foo.funcWithParam(function(){
     
 
 
-#### 4、call和apply会改变this指向，在[巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)单独详解。
+## 4、call和apply会改变this指向，在[巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)单独详解。
 
 
 
