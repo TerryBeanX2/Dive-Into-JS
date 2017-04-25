@@ -12,8 +12,9 @@ call和apply的功能是完全一样的，只是第二个参数不一样；<br/>
 call可以接收无限多个参数，apply只接收俩参数，并且第二个参数只能是argument。<br/>
 好了，现在，你只需要记住这么多，不要多想，看下面的例子。<br/>
 
-## 2、举个基本不相关的栗子
-比如我们要搞一个装饰器，使之前写的函数运行前先运行我们添加的代码：<br/>
+## 2、举个基本不相关apply实际应用的栗子
+比如有个需求，需要做到每次调用先前别人写好的方法时，先在前面运行我们添加的代码：<br/>
+下面的代码不一定是最好的实现代码，但可以演示apply的应用。<br/>
 生动的具体化一下：
 
 ###### 先前陈海写的的代码：
@@ -42,7 +43,7 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
     foo(30); //运行一下看看效果
 ```
 
-###### 陆亦可觉得这个代码复用性太低，每次改变beforeFoo的参数，还要一同修改下面的代码，于是改进了一下：
+###### 陆亦可觉得这个代码复用性太低，每次beforeFoo的参数个数有变化，还要一同修改下面的代码，于是改进了一下：
 
 ```javascript
     function beforeFoo(num,text){
@@ -71,12 +72,20 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
 ##### 教你个apply转换大法： 
 
     a.apply(b,arguments) ES6的新写法就是 b.a(...arguments)
-    ...arguments是ES6语法，解构参数数组，用白话来说就是JS帮你在调用方法把参数按逗号分开传进去。
-    你可以在谷歌控制台里验证一下，脑补出来的代码，和原本的代码，效果是一样的。
+    ...arguments是ES6语法，解构参数数组，用白话来说就是JS帮你在调用方法时把参数按逗号分开传进去。
+    你可以在谷歌控制台里验证一下，ES6写法搞出来的代码，和原本的代码，效果是一样的。
     
 ##### 接着分析陆亦可的代码：
 
-    那么 beforeFoo.apply(this,arguments) 就可以脑补成 this.beforeFoo(...arguments)；
-    而this上文说过就是window，即window.beforeFoo(...arguments) ；
-    不写window也没问题，所以就变成了beforeFoo(...arguments);
-    于是不管你修改beforeFoo为带多少个参数，运行的时候JS会通过arguments对象在。
+    那么 beforeFoo.apply(this,arguments) 就可以转换成 this.beforeFoo(...arguments)；
+    而this上文说过指向window，即window.beforeFoo(...arguments) ；
+    window是全局环境，不写window也没问题，所以就变成了beforeFoo(...arguments);
+    于是不管你修改beforeFoo为带多少个参数，运行的时候JS会通过arguments对象在调用方法时帮你传参，无论参数多少个。
+    所以陆亦可的代码就这样借助apply完成了代码可用性的提高。
+    最后，侯亮平把这些代码封装起来...搞好了事情。
+    
+##### 所以说，ES6还是很不错的，可以在这个功能点上替代apply写法，但是你在实际情况下依然会见到许多apply的代码，所以你还是得懂他为何这么写。不相关的例子到此结束，下面说正题。
+
+## 3、call、apply会改变this指向
+
+    
