@@ -78,14 +78,57 @@ call可以接收无限多个参数，apply只接收俩参数，并且第二个�
 ##### 接着分析陆亦可的代码：
 
     那么 beforeFoo.apply(this,arguments) 就可以转换成 this.beforeFoo(...arguments)；
-    而this上文说过指向window，即window.beforeFoo(...arguments) ；
-    window是全局环境，不写window也没问题，所以就变成了beforeFoo(...arguments);
+    而this上文说过指向window，即window.beforeFoo(...arguments) ；
+    window是全局环境，不写window也没问题，所以就变成了beforeFoo(...arguments);
     于是不管你修改beforeFoo为带多少个参数，运行的时候JS会通过arguments对象在调用方法时帮你传参，无论参数多少个。
     所以陆亦可的代码就这样借助apply完成了代码可用性的提高。
-    最后，侯亮平把这些代码封装起来...搞好了事情。
-    
-##### 所以说，ES6还是很不错的，可以在这个功能点上替代apply写法，但是你在实际情况下依然会见到许多apply的代码，所以你还是得懂他为何这么写。不相关的例子到此结束，下面说正题。
+    最后，侯亮平把这些代码封装起来...搞好了事情。
+    所以说，ES6还是很不错的，可以在这个功能点上替代apply写法；
+    但是你在实际情况下依然会见到许多apply的代码，所以你还是得懂他为何这么写。
+    不相关的例子到此结束，下面说正题。
 
 ## 3、call、apply会改变this指向
-
     
+    我在实际应用中，最常用的就是用call、apply去“借”另一个对象的方法来用，其实是call、apply改变了this指向。
+    
+##### 上栗子
+    
+    我写了个对象obj1，内部三个属性，两个数字numA、numB、还有个方法add，可以算numA和numB之和：
+    
+```javascript
+var obj1 ={
+    numA:1,
+    numB:2,
+    add:function(){
+        var sum = this.numA + thi.numB
+        return sum;
+    }
+}
+obj1.add(); //打印出obj1.numA和obj1.numB的和，即3
+```
+
+    现在我写了个对象obj2，内部有只两个属性数字numA和数字numB，没有计算器，但也想求和，怎么办？
+    管obj1借啊！怎么借？call、apply啊！
+    上代码
+
+```javascript
+var obj2 = {
+    numA:3,
+    numB:4
+}
+//用call借：
+obj1.add.call(obj2); //打印出obj2.numA和obj2.numB的和，即7;
+//用apply借：
+obj1.add.apply(obj2); //打印出obj2.numA和obj2.numB的和，即7;
+```
+
+
+
+
+
+
+
+
+
+
+
