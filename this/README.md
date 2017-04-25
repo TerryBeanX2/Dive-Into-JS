@@ -30,10 +30,8 @@ foo(function(){
     console.log(this);  //自己去运行代码看this指向谁
 })
 ```
-
     这个例子就是，匿名函数内部打印了this，它作为参数，内部的this指向window。
     
-<br/>
 #### 2、找“点”大法：找得到“.”的函数调用，this指向一般是最后一个“.”左侧的那个对象：
 ##### 2-1、调用语句里只能找到一个“.”：<br/>
 
@@ -67,9 +65,9 @@ obj.bar.foo();  //自己去运行代码看this指向谁
 
     这个例子，我们找到了俩“.”，最后一个“.”左侧的对象是bar，那么this指向就是bar。
     
-##### ②如果！！！你找完了，发现左侧是prototype，那么特殊处理：再往左找一个“.”，这个“.”左侧的对象是this指向。原理在[不得不提的原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)中给出。
+##### ②如果发现你找到的“.”左侧是prototype，那么再往左找一个“.”，这个“.”左侧的对象是this指向。原理在[不得不提的原型链](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/proto)中给出。
 
-<br/>
+
 #### 3、面向对象中的this：
 
 ```javascript
@@ -107,19 +105,24 @@ foo.funcWithParam(function(){
     
     当foo.bar时，遵循找“点”大法，按照2-1，发现this指向foo；
     
-    当foo.funcWithParam(匿名函数)时，因为匿名函数作为参数，所以遵循①，发现其内部this指向window；
+    当foo.funcWithParam(匿名函数)时，因为匿名函数作为参数，所以遵循①，发现其内部this指向window；
+    
 
-<br/>
+
 #### 4、call和apply会改变this指向，在[巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)单独详解。
-<br/>
+
+
+
 ### 小结：
+
 * 找不到“.”的函数调用，其内部的this一般指向window象；
 * 找得到“.”的函数调用，其内部的this一般指向最后一个“.”左侧的那个对象，如果左侧是prototype，再向左找一个；
 * 明确区分函数是[构造函数]还是[普通函数]，[构造函数]内的this指向实例化后的对象；
 * 函数作为参数传递，被调用时其内部的this一般指向window。
 * call和apply会改变this指向，参阅[巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)。
 
-<br/>
+
+
 ##### 欢迎转载，需要注明原址。如果帮到你，给我一个Star吧，我会继续努力写下去~
 
 
