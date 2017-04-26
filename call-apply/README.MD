@@ -172,7 +172,8 @@ Obj1.prototype.add.apply(obj2, [3, 4]); //打印出obj2.numA和obj2.numB的和�
 
 #### 当你终于找到物主(到底是“借”的谁的方法)，接着理清this指向，你也就透彻的明白call和apply了。
 
-欢迎转载，需要注明原址。如果帮到你，希望得到你的Star~
+欢迎转载，需要注明原址。如果帮到你，希望得到你的Star~<br/>
+PS:教程之间紧密联系，不懂的地方，请好好看下[目录](https://github.com/TerryBeanX2/Dive-Into-JS#提供给有一定js基础开发者进阶知识点大白话解读)，有没有你不懂的那个关键字在里面。
 
 
 
