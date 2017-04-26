@@ -77,7 +77,7 @@ console.log(foo.constructor);
     foo.__proto__ = Fun.prototype;
     那不就是手动把foo(图中的f1)的原型链指向Fun(图中的Foo)的原型吗！
     
-## 4、面向对象中常用的混合模式
+## 4、ES5面向对象中常用的混合模式
 
     在封装代码/插件的时候，使用面向对象的混合模式来写，代码结构是这样的：
     
