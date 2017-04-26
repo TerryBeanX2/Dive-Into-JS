@@ -19,6 +19,7 @@
 当然这只是我的理想化，也许教程写出来很烂，甚至偏离了初衷，但只要帮助了哪怕只有一个人，这个教程就不白写。<br/>
 
 #### 本着对技术负责的态度，任何纠正/疑问，请在[issues](https://github.com/TerryBeanX2/Dive-Into-JS/issues)里提出，我会及时修正/回答。
+#### 一定要把每个例子代码都拷贝到你的运行环境中边看结果边理解，不然学习效果减半，或者没效果。
 
 [1、理解this指向的小技巧](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/this)<br/>
 [2、巧妙理解call、apply](https://github.com/TerryBeanX2/Dive-Into-JS/tree/master/call-apply)<br/>
@@ -27,3 +28,4 @@
 +、...<br/>
 
 #### 如果帮到你，给我一个Star吧，我会继续努力写下去~
+#### 教程之间紧密联系，不懂得地方不要急，来回多看看。
