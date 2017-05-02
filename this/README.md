@@ -84,6 +84,7 @@ obj.bar.foo();  //自己去运行代码看this指向谁
 ###### 声明
 ```javascript
 function Foo(){
+    this.name = 'hahaha'
     console.log(this);
 }
 Foo.prototype.bar = function(){
@@ -101,9 +102,11 @@ Foo.prototype.bar();  //自己去运行代码看this指向谁
 
 var foo = new Foo(); //自己去运行代码看this指向谁
 
+foo.name = '我是foo';
+
 foo.bar(); //自己去运行代码看this指向谁
 
-foo.funcWithParam(function(){ 
+foo.funcWithParam(function(){
     console.log(this);  //自己去运行代码看this指向谁
 });
 
